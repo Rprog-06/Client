@@ -9,7 +9,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await API.get("api/user/profile", {
+        const res = await API.get("user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
