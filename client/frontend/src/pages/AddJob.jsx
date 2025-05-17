@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//import API from "../api/axiosInstance";
-import API from "../api";
+import API from "../api/axiosInstance";
+//import API from "../api";
 const AddJob = () => {
   const [form, setForm] = useState({
     title: "",
@@ -28,7 +28,7 @@ const AddJob = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Job added!");
-      navigate("/dashboard");
+      navigate("/Dashboard");
     } catch (error) {
       alert("Failed to add job");
     }
