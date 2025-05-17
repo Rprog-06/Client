@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import API from "../api";
+//import API from "../api";
 import { useNavigate } from "react-router-dom";
-//import API from "../api/axiosInstance";
+import API from "../api/axiosInstance";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post("/auth/register", formData);
+      await API.post("/api/auth/register", formData);
       alert("Registration successful");
       navigate("/login");
     } catch (error) {
