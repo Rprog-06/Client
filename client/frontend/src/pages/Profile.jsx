@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import API from "../api"; // Adjust the import based on your file structure
-//import API from "../api/axiosInstance";
+//import API from "../api"; // Adjust the import based on your file structure
+import API from "../api/axiosInstance";
 const Profile = () => {
   const [user, setUser] = useState(null);
 
@@ -9,7 +9,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:5000/api/user/profile", {
+        const res = await axios.get("api/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
