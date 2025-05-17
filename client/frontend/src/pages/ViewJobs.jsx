@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axiosInstance";
 
 const ViewJobs = () => {
   const [jobs, setJobs] = useState([]);
-   const role = localStorage.getItem("user.role");
+  const role = localStorage.getItem("user.role");
   const navigate = useNavigate();
 
- const fetchJobs = async () => {
+  useEffect(() => {
+    const fetchJobs = async () => {
       try {
         const res = await API.get("/api/jobs");
         setJobs(res.data);
@@ -20,8 +20,8 @@ const ViewJobs = () => {
 
     fetchJobs();
   }, []);
+
   const handleApply = (jobId) => {
-    // Navigate to application form with jobId param
     navigate(`/apply/${jobId}`);
   };
 
@@ -32,10 +32,14 @@ const ViewJobs = () => {
         {jobs.map((job) => (
           <div key={job._id} className="bg-white p-4 rounded-xl shadow">
             <h3 className="text-xl font-semibold">{job.title}</h3>
-            <p className="text-gray-600">{job.company} - {job.location}</p>
+            <p className="text-gray-600">
+              {job.company} - {job.location}
+            </p>
             <p className="text-sm mt-2">{job.description}</p>
             <p className="text-sm text-blue-600 mt-1">{job.salary}</p>
-              {/* <p>Deadline: {new Date(job.deadline).toLocaleDateString()}</p> */}
+            {/* Uncomment if needed
+              <p>Deadline: {new Date(job.deadline).toLocaleDateString()}</p> 
+            */}
             {role === "applicant" && (
               <button
                 onClick={() => handleApply(job._id)}
